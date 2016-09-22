@@ -7,11 +7,11 @@ run using 'python cards.py'
 
 still need to implement:
 
--folding mechanics
+  -folding mechanics
 
--hand strength determination
+  -hand strength determination
 
--AI betting/folding
+  -AI betting/folding
 
--hand winner
+  -hand winner
 
