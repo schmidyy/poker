@@ -61,6 +61,11 @@ table = pot(25, 50, AI)
 
 #main loop
 while(ME.chips >= 0 and AI.chips >= 0):
+    ROUND = True
+    table.chips = 0
+    table.cards = ""
+    TURN = True
+
     table.chips += table.lb +table.bb
 
     if (ME == table.dealer):
@@ -105,7 +110,10 @@ while(ME.chips >= 0 and AI.chips >= 0):
                         TURN = False
             elif (bet == 'F'):
                 print "You fold."
+                AI.chips += table.chips
+                print "The AI wins the pot"
                 TURN = False
+                ROUND = False
                 break
             else:
                 print "Please enter a valid response"
@@ -119,7 +127,7 @@ while(ME.chips >= 0 and AI.chips >= 0):
 
     tableStatus()
 
-    if (table.dealer == AI):
+    if (table.dealer == AI and ROUND == True):
         while (TURN == False):
             flopDec = raw_input("\n\nWould you like to bet (B) or check (C): ")
             if (flopDec == 'B'):
@@ -152,7 +160,7 @@ while(ME.chips >= 0 and AI.chips >= 0):
 
     tableStatus()
 
-    if (table.dealer == AI):
+    if (table.dealer == AI and ROUND == True):
         while (TURN == True):
             turnDec = raw_input("\n\nWould you like to bet (B) or check (C): ")
             if (turnDec == 'B'):
@@ -185,7 +193,7 @@ while(ME.chips >= 0 and AI.chips >= 0):
 
     tableStatus()
 
-    if (table.dealer == AI):
+    if (table.dealer == AI and ROUND == True):
         while (TURN == False):
             riverDec = raw_input("\n\nWould you like to bet (B) or check (C): ")
             if (riverDec == 'B'):
@@ -217,8 +225,13 @@ while(ME.chips >= 0 and AI.chips >= 0):
     for i in AI.cards:
         print i.rep,
 
-    replay = raw_input("\n\nWould you like to play again? (Y/N)")
-    if (table.dealer == AI):
-        table.dealer = ME
-    else:
-        table.dealer = AI
+    if (ROUND == False):
+        replay = raw_input("\n\nWould you like to play again? (Y/N) ")
+        if (replay == 'Y'):
+            # if (table.dealer == AI):
+            #     table.dealer = ME
+            # else:
+            #     table.dealer = AI
+            print "REPLAY"
+        else:
+            quit()
